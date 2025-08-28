@@ -1,9 +1,9 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && REPL_ID= NODE_ENV=production npx vite build"
+  command = "npm ci && npx vite build --config vite.config.prod.js"
 
 [build.environment]
-  NODE_VERSION = "20.19.0"
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
