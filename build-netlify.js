@@ -48,16 +48,49 @@ try {
       :root {
         --background: hsl(210, 11%, 97%);
         --foreground: hsl(215, 25%, 27%);
+        --card: hsl(0, 0%, 100%);
+        --card-foreground: hsl(215, 25%, 27%);
+        --popover: hsl(0, 0%, 100%);
+        --popover-foreground: hsl(215, 25%, 27%);
         --primary: hsl(217, 91%, 35%);
+        --primary-foreground: hsl(0, 0%, 98%);
         --secondary: hsl(159, 65%, 38%);
+        --secondary-foreground: hsl(0, 0%, 98%);
+        --muted: hsl(214, 13%, 92%);
+        --muted-foreground: hsl(215, 16%, 47%);
         --accent: hsl(28, 86%, 53%);
+        --accent-foreground: hsl(0, 0%, 98%);
+        --destructive: hsl(0, 72%, 51%);
+        --destructive-foreground: hsl(0, 0%, 98%);
+        --border: hsl(214, 13%, 92%);
+        --input: hsl(214, 13%, 92%);
+        --ring: hsl(217, 91%, 35%);
         --chart-1: hsl(217, 91%, 35%);
         --chart-2: hsl(159, 65%, 38%);
         --chart-3: hsl(28, 86%, 53%);
         --chart-4: hsl(147, 78%, 42%);
         --chart-5: hsl(341, 75%, 51%);
         --sidebar: hsl(0, 0%, 100%);
+        --sidebar-foreground: hsl(215, 25%, 27%);
         --sidebar-primary: hsl(217, 91%, 35%);
+        --sidebar-primary-foreground: hsl(0, 0%, 98%);
+        --sidebar-accent: hsl(214, 13%, 92%);
+        --sidebar-accent-foreground: hsl(215, 25%, 27%);
+        --sidebar-border: hsl(214, 13%, 92%);
+        --sidebar-ring: hsl(217, 91%, 35%);
+        --radius: 0.5rem;
+      }
+      .dark {
+        --background: hsl(224, 71%, 4%);
+        --foreground: hsl(213, 31%, 91%);
+        --sidebar: hsl(224, 71%, 4%);
+        --sidebar-foreground: hsl(213, 31%, 91%);
+        --sidebar-primary: hsl(224, 76%, 78%);
+        --sidebar-primary-foreground: hsl(222.2, 47.4%, 1.2%);
+        --sidebar-accent: hsl(216, 34%, 17%);
+        --sidebar-accent-foreground: hsl(210, 40%, 98%);
+        --sidebar-border: hsl(216, 34%, 17%);
+        --sidebar-ring: hsl(224, 76%, 78%);
       }
     </style>
   </head>
