@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { JSONBinSync } from "@/components/dashboard/jsonbin-sync";
+import { JSONBinSync } from "@/components/dashboard/jsonbin-sync-static";
 import { Database, Download, Upload, Bell, Palette, Globe } from "lucide-react";
 
 export default function Settings() {

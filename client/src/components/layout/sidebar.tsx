@@ -31,7 +31,7 @@ export function Sidebar() {
               <Database className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-sidebar-foreground">PaintCompare</h1>
+              <h1 className="text-lg font-semibold text-sidebar-foreground">Comparador de Preços</h1>
               <p className="text-xs text-sidebar-foreground/70">Pro</p>
             </div>
           </div>

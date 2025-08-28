@@ -1,6 +1,5 @@
-import { Bell, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface HeaderProps {
   title: string;
@@ -20,21 +19,6 @@ export function Header({ title, subtitle }: HeaderProps) {
             {subtitle && (
               <p className="text-sm text-muted-foreground">{subtitle}</p>
             )}
-          </div>
-        </div>
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="relative" data-testid="button-notifications">
-            <Bell className="w-5 h-5" />
-            <span className="absolute top-0 right-0 w-2 h-2 bg-accent rounded-full"></span>
-          </Button>
-          <div className="flex items-center space-x-2">
-            <Avatar>
-              <AvatarFallback className="bg-primary text-primary-foreground">JS</AvatarFallback>
-            </Avatar>
-            <div className="hidden sm:block">
-              <p className="text-sm font-medium text-foreground">João Silva</p>
-              <p className="text-xs text-muted-foreground">Administrador</p>
-            </div>
           </div>
         </div>
       </div>
