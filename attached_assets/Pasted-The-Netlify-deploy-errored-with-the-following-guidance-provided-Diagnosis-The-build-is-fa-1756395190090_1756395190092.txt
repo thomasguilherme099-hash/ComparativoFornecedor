@@ -1,0 +1,35 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+The build is failing because it is trying to download and install Node version 20.19.4, which is an invalid or non-existent version.
+
+**Solution:**
+1. **Node Version Mismatch:**
+   - The Node version being installed (`v20.19.4`) is incorrect. Node versions follow a different numbering pattern (major.minor.patch) and `20.19.4` doesn't exist.
+   - Refer to the [Netlify documentation](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript) on managing Node versions for guidance on how to specify the correct Node version in your project.
+
+2. **Updating Node Version:**
+   - Check your project's `package.json` file to see which Node version is specified in the `engines` field or the `node` field.
+   - Update or correct the specified Node version to a valid one. For example, `"node": "14.x"` or `"engines": { "node": "14.x"}`.
+   - Make sure the corrected Node version is supported by Netlify and the dependencies used in your project.
+
+3. **Reconfigure the Build:**
+   - Once you have corrected the Node version in your project, trigger a new build to ensure the correction takes effect.
+   - If needed, update the build settings in your Netlify configuration to reflect the corrected Node version for future builds.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.config.prod.js'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v20.19.4...
+Line 12: Downloading https://nodejs.org/dist/v20.19.4/node-v20.19.4-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum

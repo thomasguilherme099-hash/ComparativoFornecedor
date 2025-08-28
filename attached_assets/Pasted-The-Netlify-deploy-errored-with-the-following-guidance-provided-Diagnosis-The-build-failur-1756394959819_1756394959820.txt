@@ -1,0 +1,39 @@
+The Netlify deploy errored, with the following guidance provided:
+
+### Diagnosis
+The build failure is due to the inability to load the Vite configuration file during the build process.
+
+### Solution
+1. **Verify Vite Package**: Ensure that the `vite` package with version `7.1.3` or the version specified in the `vite.config.ts` file is included in the `package.json` file or has been committed to the repository.
+
+2. **Fix Vite Configuration**: As the build failed to load the configuration from `vite.config.ts`, you may need to check the contents of this file for any errors. Additionally, if the Vite configuration is not in TypeScript, you might need to rename it to `vite.config.js`.
+
+By addressing these issues, you should be able to resolve the build failure.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npx vite build'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v20.19.4...
+Line 12: Downloading https://nodejs.org/dist/v20.19.4/node-v20.19.4-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 56:    - neon
+Line 57: [36m[1m​[22m[39m
+Line 58: [36m[1m❯ Loading extensions[22m[39m
+Line 59:    - neon
+Line 60: [96m[1m​[22m[39m
+Line 61: [96m[1mbuild.command from netlify.toml                               [22m[39m
+Line 62: [96m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 63: ​
+Line 64: [36m$ npx vite build[39m
+Line 65: npm warn exec The following package was not found and will be installed: vite@7.1.3
+Line 66: [31mfailed to load config from /opt/build/repo/vite.config.ts[39m

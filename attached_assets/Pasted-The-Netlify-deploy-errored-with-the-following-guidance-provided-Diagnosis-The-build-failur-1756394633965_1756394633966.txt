@@ -1,0 +1,79 @@
+The Netlify deploy errored, with the following guidance provided:
+
+### Diagnosis
+The build failure is due to the command `vite build` failing with the error `sh: 1: vite: not found` at [line 67](#L67).
+
+### Solution
+1. The error indicates that `vite` is not found, which suggests that Vite is not installed or available in the project dependencies.
+2. To resolve this issue, ensure that Vite is listed as a dependency in the project's `package.json` file by running:
+   ```bash
+   npm install vite --save-dev
+   ```
+3. Once Vite is installed, you can run the build command successfully.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom build command detected. Proceeding with the specified command: 'npm run build'
+Line 9: Starting to install dependencies
+Line 10: Downloading and installing node v18.20.0...
+Line 11: Downloading https://nodejs.org/dist/v18.20.0/node-v18.20.0-linux-x64.tar.xz...
+Line 12: Computing checksum with sha256sum
+Line 13: Checksums matched!
+Line 46:   /opt/build/repo
+Line 47: [36m[1m​[22m[39m
+Line 48: [36m[1m❯ Config file[22m[39m
+Line 49:   /opt/build/repo/netlify.toml
+Line 50: [36m[1m​[22m[39m
+Line 51: [36m[1m❯ Context[22m[39m
+Line 52:   production
+Line 53: [36m[1m​[22m[39m
+Line 54: [36m[1m❯ Installing extensions[22m[39m
+Line 55:    - neon
+Line 56: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 57: [36m[1m​[22m[39m
+Line 58: [36m[1m❯ Loading extensions[22m[39m
+Line 59:    - neon
+Line 60: [96m[1m​[22m[39m
+Line 61: [96m[1mbuild.command from netlify.toml                               [22m[39m
+Line 62: [96m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 63: ​
+Line 64: [36m$ npm run build[39m
+Line 65: > rest-express@1.0.0 build
+Line 66: > vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+Line 67: sh: 1: vite: not found
+Line 68: [91m[1m​[22m[39m
+Line 69: [91m[1m"build.command" failed                                        [22m[39m
+Line 70: [91m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 71: ​
+Line 72:   [31m[1mError message[22m[39m
+Line 73:   Command failed with exit code 127: npm run build
+Line 74: ​
+Line 75:   [31m[1mError location[22m[39m
+Line 76:   In build.command from netlify.toml:
+Line 77:   npm run build
+Line 78: ​
+Line 79:   [31m[1mResolved config[22m[39m
+Line 80:   build:
+Line 81:     command: npm run build
+Line 82:     commandOrigin: config
+Line 83:     environment:
+Line 84:       - NODE_VERSION
+Line 85:       - NODE_ENV
+Line 86:     publish: /opt/build/repo/dist
+Line 87:     publishOrigin: config
+Line 88:   redirects:
+Line 89:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+Line 90: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 91: Failing build: Failed to build site
+Line 92: Finished processing build request in 1m6.814s
