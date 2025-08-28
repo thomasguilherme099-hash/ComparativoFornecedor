@@ -1,0 +1,38 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+The build failed with a non-zero exit code due to an issue during the stage of building the site.
+
+**Solution:**
+1. Verify that all necessary dependencies are listed in the `package.json` file and were committed to the repository.
+2. Check for any build scripts in the `package.json` file that might be causing the error.
+3. Review the build configuration and ensure it is correctly set up to build the site.
+4. Investigate the specific error indicated by the non-zero exit code to pinpoint the exact cause of the build failure and make necessary adjustments in the build script or configuration.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.config.prod.js'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v18.19.0...
+Line 12: Downloading https://nodejs.org/dist/v18.19.0/node-v18.19.0-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 47:   /opt/build/repo
+Line 48: [36m[1m​[22m[39m
+Line 49: [36m[1m❯ Config file[22m[39m
+Line 50:   /opt/build/repo/netlify.toml
+Line 51: [36m[1m​[22m[39m
+Line 52: [36m[1m❯ Context[22m[39m
+Line 53:   production
+Line 54: [36m[1m​[22m[39m
+Line 55: [36m[1m❯ Installing extensions[22m[39m
+Line 56:    - neon
+Line 57: Failed during stage 'building site': Build script returned non-zero exit code: 2

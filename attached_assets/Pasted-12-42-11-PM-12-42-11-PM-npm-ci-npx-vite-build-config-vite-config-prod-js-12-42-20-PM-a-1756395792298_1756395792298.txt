@@ -1,0 +1,47 @@
+12:42:11 PM: ​
+12:42:11 PM: $ npm ci && npx vite build --config vite.config.prod.js
+12:42:20 PM: added 536 packages, and audited 537 packages in 9s
+12:42:20 PM: 67 packages are looking for funding
+12:42:20 PM:   run `npm fund` for details
+12:42:20 PM: 3 low severity vulnerabilities
+12:42:20 PM: To address all issues, run:
+12:42:20 PM:   npm audit fix
+12:42:20 PM: Run `npm audit` for details.
+12:42:21 PM: npm warn exec The following package was not found and will be installed: vite@7.1.3
+12:42:30 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+12:42:29 PM: failed to load config from /opt/build/repo/vite.config.prod.js
+12:42:29 PM: error during build:
+12:42:29 PM: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.prod.js.timestamp-1756395749795-639e605373885.mjs
+12:42:29 PM:     at packageResolve (node:internal/modules/esm/resolve:873:9)
+12:42:29 PM:     at moduleResolve (node:internal/modules/esm/resolve:946:18)
+12:42:29 PM:     at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+12:42:29 PM:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+12:42:29 PM:     at #cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+12:42:29 PM:     at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+12:42:29 PM:     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+12:42:29 PM:     at ModuleJob._link (node:internal/modules/esm/module_job:130:49)
+12:42:30 PM: ​
+12:42:30 PM: "build.command" failed                                        
+12:42:30 PM: ────────────────────────────────────────────────────────────────
+12:42:30 PM: ​
+12:42:30 PM:   Error message
+12:42:30 PM:   Command failed with exit code 1: npm ci && npx vite build --config vite.config.prod.js (https://ntl.fyi/exit-code-1)
+12:42:30 PM: ​
+12:42:30 PM:   Error location
+12:42:30 PM:   In build.command from netlify.toml:
+12:42:30 PM:   npm ci && npx vite build --config vite.config.prod.js
+12:42:30 PM: ​
+12:42:30 PM:   Resolved config
+12:42:30 PM:   build:
+12:42:30 PM:     command: npm ci && npx vite build --config vite.config.prod.js
+12:42:30 PM:     commandOrigin: config
+12:42:30 PM:     environment:
+12:42:30 PM:       - NODE_VERSION
+12:42:30 PM:       - NODE_ENV
+12:42:30 PM:     publish: /opt/build/repo/dist/public
+12:42:30 PM:     publishOrigin: config
+12:42:30 PM:   redirects:
+12:42:30 PM:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config

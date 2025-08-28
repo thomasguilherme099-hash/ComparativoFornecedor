@@ -1,0 +1,86 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+The build is failing due to an error related to resolving the 'vite' package in the `vite.config.ts` file during the build process.
+
+**Solution:**
+1. **Verify Vite in package.json:** Make sure that the 'vite' package is listed in the `package.json` file of your project or one of its dependencies. If it's missing, add it as a project dependency by running:
+   
+   ```bash
+   npm install vite@6.3.5 --save-dev
+   ```
+
+2. **Update Build Configuration:** Since the error is related to the build script and the 'vite.config.ts' file, ensure that the config file is correctly referenced in the build process. If necessary, update the build configuration to point to the correct 'vite.config.ts' file.
+
+By confirming the presence of the 'vite' package in the project dependencies and ensuring the correct configuration in the build process, you should be able to resolve the error.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && REPL_ID='' NODE_ENV=production npx vite build -
+Line 10: Starting to install dependencies
+Line 11: Attempting Node.js version '18' from .node-version
+Line 12: Downloading and installing node v18.20.8...
+Line 13: Downloading https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.xz...
+Line 64: ​
+Line 65: [36m$ npm ci && REPL_ID='' NODE_ENV=production npx vite build --mode production && npx esbuild server/index.ts --platform=node 
+Line 66: added 536 packages, and audited 537 packages in 7s
+Line 67: 67 packages are looking for funding
+Line 68:   run `npm fund` for details
+Line 69: 3 low severity vulnerabilities
+Line 70: To address all issues, run:
+Line 71:   npm audit fix
+Line 72: Run `npm audit` for details.
+Line 73: npm warn exec The following package was not found and will be installed: vite@6.3.5
+Line 74: [31mfailed to load config from /opt/build/repo/vite.config.ts[39m
+Line 75: [31merror during build:
+Line 76: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.ts.ti
+Line 77:     at new NodeError (node:internal/errors:405:5)
+Line 78:     at packageResolve (node:internal/modules/esm/resolve:916:9)
+Line 79:     at moduleResolve (node:internal/modules/esm/resolve:973:20)
+Line 80:     at defaultResolve (node:internal/modules/esm/resolve:1206:11)
+Line 81:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:404:12)
+Line 82:     at ModuleLoader.resolve (node:internal/modules/esm/loader:373:25)
+Line 83:     at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:250:38)
+Line 84:     at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:76:39)
+Line 85:     at link (node:internal/modules/esm/module_job:75:36)[39m
+Line 86: [91m[1m​[22m[39m
+Line 87: [91m[1m"build.command" failed                                        [22m[39m
+Line 88: [91m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 89: ​
+Line 90:   [31m[1mError message[22m[39m
+Line 91:   Command failed with exit code 1: npm ci && REPL_ID='' NODE_ENV=production npx vite build --mode production && npx esbuild serv
+Line 92: ​
+Line 93:   [31m[1mError location[22m[39m
+Line 94:   In build.command from netlify.toml:
+Line 95:   npm ci && REPL_ID='' NODE_ENV=production npx vite build --mode production && npx esbuild server/index.ts --platform=node --pac
+Line 96: ​
+Line 97:   [31m[1mResolved config[22m[39m
+Line 98:   build:
+Line 99:     command: npm ci && REPL_ID='' NODE_ENV=production npx vite build --mode
+Line 100:       production && npx esbuild server/index.ts --platform=node
+Line 101:       --packages=external --bundle --format=esm --outdir=dist
+Line 102:     commandOrigin: config
+Line 103:     environment:
+Line 104:       - NODE_VERSION
+Line 105:       - NODE_ENV
+Line 106:       - REPL_ID
+Line 107:     publish: /opt/build/repo/dist/public
+Line 108:     publishOrigin: config
+Line 109:   redirects:
+Line 110: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 111:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+Line 112: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 113: Failing build: Failed to build site
+Line 114: Finished processing build request in 1m5.123s

@@ -1,0 +1,87 @@
+The Netlify deploy errored, with the following guidance provided:
+
+### Diagnosis
+The build failure is due to an error loading the Vite configuration file (`vite.netlify.config.mjs`) because the package 'vite' is not found.
+
+The relevant error lines in the log are:
+- [line 74](#L74): `npm warn exec The following package was not found and will be installed: vite@6.3.5`
+- [line 75](#L75): `failed to load config from /opt/build/repo/vite.netlify.config.mjs`
+- [line 77](#L77): `Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.netlify.conf`
+
+### Solution
+1. Ensure that the 'vite' package is listed in the `dependencies` or `devDependencies` of the `package.json` file.
+2. Commit the changes to the repo if you have added the 'vite' package.
+3. If 'vite' is a development dependency, it should be installed using `npm install vite --save-dev`.
+4. If 'vite' is a regular dependency, it should be installed using `npm install vite`.
+5. If 'vite' is an external package that should not be bundled, verify the package is in `package.json` or was committed to the repo before adding it to the external configuration.
+
+Once the 'vite' package is correctly installed and available, the build should be able to locate the package and proceed with the build process.
+
+The relevant error logs are:
+
+Line 0: Waiting for other deploys from your team to complete. Check the queue: https://app.netlify.com/teams/thomasguilherme099-hash/bui
+Line 1: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 2: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 3: Fetching cached dependencies
+Line 4: Failed to fetch cache, continuing with build
+Line 5: Starting to prepare the repo for build
+Line 6: No cached dependencies found. Cloning fresh repo
+Line 7: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 8: Preparing Git Reference refs/heads/main
+Line 9: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 10: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.netlify.config.mjs
+Line 11: Starting to install dependencies
+Line 12: Attempting Node.js version '18' from .node-version
+Line 13: Downloading and installing node v18.20.8...
+Line 14: Downloading https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.xz...
+Line 65: ​
+Line 66: [36m$ npm ci && npx vite build --config vite.netlify.config.mjs[39m
+Line 67: added 536 packages, and audited 537 packages in 6s
+Line 68: 67 packages are looking for funding
+Line 69:   run `npm fund` for details
+Line 70: 3 low severity vulnerabilities
+Line 71: To address all issues, run:
+Line 72:   npm audit fix
+Line 73: Run `npm audit` for details.
+Line 74: npm warn exec The following package was not found and will be installed: vite@6.3.5
+Line 75: [31mfailed to load config from /opt/build/repo/vite.netlify.config.mjs[39m
+Line 76: [31merror during build:
+Line 77: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.netlify.conf
+Line 78:     at new NodeError (node:internal/errors:405:5)
+Line 79:     at packageResolve (node:internal/modules/esm/resolve:916:9)
+Line 80:     at moduleResolve (node:internal/modules/esm/resolve:973:20)
+Line 81:     at defaultResolve (node:internal/modules/esm/resolve:1206:11)
+Line 82:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:404:12)
+Line 83:     at ModuleLoader.resolve (node:internal/modules/esm/loader:373:25)
+Line 84:     at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:250:38)
+Line 85:     at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:76:39)
+Line 86:     at link (node:internal/modules/esm/module_job:75:36)[39m
+Line 87: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 88: [91m[1m​[22m[39m
+Line 89: [91m[1m"build.command" failed                                        [22m[39m
+Line 90: [91m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 91: ​
+Line 92:   [31m[1mError message[22m[39m
+Line 93:   Command failed with exit code 1: npm ci && npx vite build --config vite.netlify.config.mjs
+Line 94: ​
+Line 95:   [31m[1mError location[22m[39m
+Line 96:   In build.command from netlify.toml:
+Line 97:   npm ci && npx vite build --config vite.netlify.config.mjs
+Line 98: ​
+Line 99:   [31m[1mResolved config[22m[39m
+Line 100:   build:
+Line 101:     command: npm ci && npx vite build --config vite.netlify.config.mjs
+Line 102:     commandOrigin: config
+Line 103:     environment:
+Line 104:       - NODE_VERSION
+Line 105:       - NODE_ENV
+Line 106:     publish: /opt/build/repo/dist/public
+Line 107:     publishOrigin: config
+Line 108:   redirects:
+Line 109:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+Line 110: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 111: Failing build: Failed to build site
+Line 112: Finished processing build request in 55.422s

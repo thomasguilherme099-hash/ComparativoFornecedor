@@ -1,0 +1,40 @@
+The Netlify deploy errored, with the following guidance provided:
+
+### Diagnosis
+The build is failing with a non-zero exit code during the stage of building the site.
+
+The error is likely related to the build command that includes `npm ci && npx vite build --config vite.config.prod.js`.
+
+### Solution
+1. Verify that all the necessary dependencies for the build are correctly specified in the `package.json` file and committed to the repository.
+2. Check if the `vite.config.prod.js` file is available in the repository.
+3. Ensure that the build command is correct and there are no typos or mistakes in the command.
+4. If there are no issues with dependencies or the configuration files, investigate the specific error code `2` to understand the exact cause of the failure and resolve it accordingly.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.config.prod.js'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v18.19.0...
+Line 12: Downloading https://nodejs.org/dist/v18.19.0/node-v18.19.0-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 55: [36m[1m❯ Installing extensions[22m[39m
+Line 56:    - neon
+Line 57: [36m[1m​[22m[39m
+Line 58: [36m[1m❯ Loading extensions[22m[39m
+Line 59:    - neon
+Line 60: [96m[1m​[22m[39m
+Line 61: [96m[1mbuild.command from netlify.toml                               [22m[39m
+Line 62: [96m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 63: ​
+Line 64: [36m$ npm ci && npx vite build --config vite.config.prod.js[39m
+Line 65: Failed during stage 'building site': Build script returned non-zero exit code: 2

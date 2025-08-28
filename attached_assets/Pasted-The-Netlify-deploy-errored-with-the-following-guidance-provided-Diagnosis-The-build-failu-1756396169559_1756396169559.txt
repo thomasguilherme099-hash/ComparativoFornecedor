@@ -1,0 +1,47 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+The build failure is occurring with the following error message: "Failed during stage 'building site': Build script returned non-zero exit code: 2" [#L57](#L57).
+
+**Solution:**
+1. The build is failing due to a non-zero exit code, which indicates an issue with the build script.
+2. To resolve this error, you should review the custom build command specified in the `netlify.toml` file at path `netlify.toml` in the root of the project directory.
+3. Check the `npm ci && npx vite build --config vite.config.prod.js` command to ensure it is correctly configured and does not contain any errors or typos.
+4. Verify that all the necessary dependencies for Vite are correctly set up in the project.
+5. If the issue persists, you may need to troubleshoot the Vite build command locally to identify and fix any issues before deploying on Netlify.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.config.prod.js'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v20.11.0...
+Line 12: Downloading https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 47:   /opt/build/repo
+Line 48: [36m[1m​[22m[39m
+Line 49: [36m[1m❯ Config file[22m[39m
+Line 50:   /opt/build/repo/netlify.toml
+Line 51: [36m[1m​[22m[39m
+Line 52: [36m[1m❯ Context[22m[39m
+Line 53:   production
+Line 54: [36m[1m​[22m[39m
+Line 55: [36m[1m❯ Installing extensions[22m[39m
+Line 56:    - neon
+Line 57: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 58: [36m[1m​[22m[39m
+Line 59: [36m[1m❯ Loading extensions[22m[39m
+Line 60:    - neon
+Line 61: [96m[1m​[22m[39m
+Line 62: [96m[1mbuild.command from netlify.toml                               [22m[39m
+Line 63: [96m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 64: ​
+Line 65: [36m$ npm ci && npx vite build --config vite.config.prod.js[39m

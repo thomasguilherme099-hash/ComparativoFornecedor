@@ -1,0 +1,84 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+- The build failed because Vite requires Node.js version 20.19+ or 22.12+, but the current Node.js version is 18.19.0.
+- There is also an error related to the 'vite' package not being found.
+
+**Solution:**
+1. **Update Node.js version:**
+   - Upgrade the Node.js version to at least 20.19.0 or 22.12.0. 
+   - You can follow the documentation [here](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript) to change Node versions.
+
+2. **Resolve 'vite' package issue:**
+   - Ensure that the 'vite' package is listed in your `package.json` file or was committed to the repository.
+   - Additionally, you might need to add 'vite' to the external configuration if necessary.
+
+By updating the Node.js version and verifying the 'vite' package, you should be able to resolve the build failure.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && REPL_ID= NODE_ENV=production npx vite build'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v18.19.0...
+Line 12: Downloading https://nodejs.org/dist/v18.19.0/node-v18.19.0-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 69: To address all issues, run:
+Line 70:   npm audit fix
+Line 71: Run `npm audit` for details.
+Line 72: npm WARN exec The following package was not found and will be installed: vite@7.1.3
+Line 73: npm WARN EBADENGINE Unsupported engine {
+Line 74: npm WARN EBADENGINE   package: 'vite@7.1.3',
+Line 75: npm WARN EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+Line 76: npm WARN EBADENGINE   current: { node: 'v18.19.0', npm: '10.2.3' }
+Line 77: npm WARN EBADENGINE }
+Line 78: [33mYou are using Node.js 18.19.0. Vite requires Node.js version 20.19+ or 22.12+. Please upgrade your Node.js version.[39m
+Line 79: [31mfailed to load config from /opt/build/repo/vite.config.ts[39m
+Line 80: [31merror during build:
+Line 81: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.ts.ti
+Line 82:     at new NodeError (node:internal/errors:405:5)
+Line 83:     at packageResolve (node:internal/modules/esm/resolve:916:9)
+Line 84:     at moduleResolve (node:internal/modules/esm/resolve:973:20)
+Line 85:     at defaultResolve (node:internal/modules/esm/resolve:1193:11)
+Line 86:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:403:12)
+Line 87:     at ModuleLoader.resolve (node:internal/modules/esm/loader:372:25)
+Line 88:     at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:249:38)
+Line 89:     at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:76:39)
+Line 90:     at link (node:internal/modules/esm/module_job:75:36)[39m
+Line 91: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 92: [91m[1m​[22m[39m
+Line 93: [91m[1m"build.command" failed                                        [22m[39m
+Line 94: [91m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 95: ​
+Line 96:   [31m[1mError message[22m[39m
+Line 97:   Command failed with exit code 1: npm ci && REPL_ID= NODE_ENV=production npx vite build
+Line 98: ​
+Line 99:   [31m[1mError location[22m[39m
+Line 100:   In build.command from netlify.toml:
+Line 101:   npm ci && REPL_ID= NODE_ENV=production npx vite build
+Line 102: ​
+Line 103:   [31m[1mResolved config[22m[39m
+Line 104:   build:
+Line 105:     command: npm ci && REPL_ID= NODE_ENV=production npx vite build
+Line 106:     commandOrigin: config
+Line 107:     environment:
+Line 108:       - NODE_VERSION
+Line 109:       - NODE_ENV
+Line 110:     publish: /opt/build/repo/dist/public
+Line 111:     publishOrigin: config
+Line 112:   redirects:
+Line 113:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+Line 114: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 115: Failing build: Failed to build site
+Line 116: Finished processing build request in 54.486s

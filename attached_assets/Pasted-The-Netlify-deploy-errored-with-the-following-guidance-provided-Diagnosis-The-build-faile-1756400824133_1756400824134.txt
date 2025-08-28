@@ -1,0 +1,40 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+The build failed at line 66 due to the build script returning a non-zero exit code.
+
+**Solution:**
+1. Check the logs or the build script for any specific error messages that might indicate what caused the non-zero exit code.
+2. Make sure all dependencies are correctly installed and configured for the build script to run successfully.
+3. Verify that the build script 'npm ci && REPL_ID='' NODE_ENV=production npx vite build' is correct and doesn't contain any errors.
+4. Test the build script locally to see if it runs without issues.
+5. If the build script relies on any external packages or files, ensure those dependencies are added to the project. If needed, update the `package.json` or make sure all necessary files are committed to the repository.
+6. If the issue persists, consider debugging the build script or seeking help from the community or the tool's documentation for further assistance.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && REPL_ID='' NODE_ENV=production npx vite build'
+Line 10: Starting to install dependencies
+Line 11: Attempting Node.js version '18' from .node-version
+Line 12: Downloading and installing node v18.20.8...
+Line 13: Downloading https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.xz...
+Line 56: [36m[1m❯ Installing extensions[22m[39m
+Line 57:    - neon
+Line 58: [36m[1m​[22m[39m
+Line 59: [36m[1m❯ Loading extensions[22m[39m
+Line 60:    - neon
+Line 61: [96m[1m​[22m[39m
+Line 62: [96m[1mbuild.command from netlify.toml                               [22m[39m
+Line 63: [96m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 64: ​
+Line 65: [36m$ npm ci && REPL_ID='' NODE_ENV=production npx vite build[39m
+Line 66: Failed during stage 'building site': Build script returned non-zero exit code: 2

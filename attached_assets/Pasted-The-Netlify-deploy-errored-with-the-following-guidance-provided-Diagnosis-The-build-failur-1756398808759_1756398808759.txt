@@ -1,0 +1,40 @@
+The Netlify deploy errored, with the following guidance provided:
+
+### Diagnosis
+The build failure is due to a non-zero exit code returned during the site building stage.
+
+### Solution
+1. **Verify Node Version**: The build is attempting to download and install Node version 20.19.4, which is not a valid Node.js version. Node.js versions follow a different numbering scheme. Ensure that a correct Node.js version is used.  
+   For managing Node versions in Netlify, refer to the documentation on [changing Node versions](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript).
+
+2. **Install Missing Package**: The build warns about a missing package `vite@7.1.3`. Verify that this package is listed in the `package.json` file or was committed to the repository. If it's missing, add it to the dependencies in the `package.json` file.
+
+In summary, correct the Node.js version being used and ensure that the `vite@7.1.3` package is included in the project dependencies.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.config.prod.js'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v20.19.4...
+Line 12: Downloading https://nodejs.org/dist/v20.19.4/node-v20.19.4-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 63: ​
+Line 64: [36m$ npm ci && npx vite build --config vite.config.prod.js[39m
+Line 65: added 536 packages, and audited 537 packages in 6s
+Line 66: 67 packages are looking for funding
+Line 67:   run `npm fund` for details
+Line 68: 3 low severity vulnerabilities
+Line 69: To address all issues, run:
+Line 70:   npm audit fix
+Line 71: Run `npm audit` for details.
+Line 72: npm warn exec The following package was not found and will be installed: vite@7.1.3
+Line 73: Failed during stage 'building site': Build script returned non-zero exit code: 2

@@ -1,0 +1,82 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+The build failed at line 74 with the following error:
+```
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.ts
+```
+
+**Solution:**
+1. Verify that the `vite` package is included in your `package.json` file.
+2. If the `vite` package is missing, add it to your `package.json` file by running:
+   ```bash
+   npm install vite@6.3.5 --save-dev
+   ```
+3. Ensure that any necessary configuration files like `vite.config.ts` are committed to your repository to avoid the error of not finding the package.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && NODE_ENV=production npx vite build'
+Line 10: Starting to install dependencies
+Line 11: Downloading and installing node v18.20.8...
+Line 12: Downloading https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.xz...
+Line 13: Computing checksum with sha256sum
+Line 63: ​
+Line 64: [36m$ npm ci && NODE_ENV=production npx vite build[39m
+Line 65: added 536 packages, and audited 537 packages in 7s
+Line 66: 67 packages are looking for funding
+Line 67:   run `npm fund` for details
+Line 68: 3 low severity vulnerabilities
+Line 69: To address all issues, run:
+Line 70:   npm audit fix
+Line 71: Run `npm audit` for details.
+Line 72: npm warn exec The following package was not found and will be installed: vite@6.3.5
+Line 73: [31mfailed to load config from /opt/build/repo/vite.config.ts[39m
+Line 74: [31merror during build:
+Line 75: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.ts.ti
+Line 76:     at new NodeError (node:internal/errors:405:5)
+Line 77:     at packageResolve (node:internal/modules/esm/resolve:916:9)
+Line 78:     at moduleResolve (node:internal/modules/esm/resolve:973:20)
+Line 79:     at defaultResolve (node:internal/modules/esm/resolve:1206:11)
+Line 80:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:404:12)
+Line 81:     at ModuleLoader.resolve (node:internal/modules/esm/loader:373:25)
+Line 82:     at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:250:38)
+Line 83:     at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:76:39)
+Line 84:     at link (node:internal/modules/esm/module_job:75:36)[39m
+Line 85: [91m[1m​[22m[39m
+Line 86: [91m[1m"build.command" failed                                        [22m[39m
+Line 87: [91m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 88: ​
+Line 89:   [31m[1mError message[22m[39m
+Line 90:   Command failed with exit code 1: npm ci && NODE_ENV=production npx vite build
+Line 91: ​
+Line 92:   [31m[1mError location[22m[39m
+Line 93:   In build.command from netlify.toml:
+Line 94:   npm ci && NODE_ENV=production npx vite build
+Line 95: ​
+Line 96:   [31m[1mResolved config[22m[39m
+Line 97:   build:
+Line 98:     command: npm ci && NODE_ENV=production npx vite build
+Line 99:     commandOrigin: config
+Line 100:     environment:
+Line 101:       - NODE_VERSION
+Line 102:       - NODE_ENV
+Line 103:     publish: /opt/build/repo/dist/public
+Line 104:     publishOrigin: config
+Line 105:   redirects:
+Line 106:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+Line 107: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 108: Failing build: Failed to build site
+Line 109: Finished processing build request in 56.108s

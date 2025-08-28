@@ -1,0 +1,80 @@
+2:06:12 PM: Netlify Build                                                 
+2:06:12 PM: ────────────────────────────────────────────────────────────────
+2:06:12 PM: ​
+2:06:12 PM: ❯ Version
+2:06:12 PM:   @netlify/build 35.1.2
+2:06:12 PM: ​
+2:06:12 PM: ❯ Flags
+2:06:12 PM:   accountId: 689e41170073b526fc69db0a
+2:06:12 PM:   baseRelDir: true
+2:06:12 PM:   buildId: 68b08c72e9c42e0008cd235b
+2:06:12 PM:   deployId: 68b08c72e9c42e0008cd235d
+2:06:12 PM: ​
+2:06:12 PM: ❯ Current directory
+2:06:12 PM:   /opt/build/repo
+2:06:12 PM: ​
+2:06:12 PM: ❯ Config file
+2:06:12 PM:   /opt/build/repo/netlify.toml
+2:06:12 PM: ​
+2:06:12 PM: ❯ Context
+2:06:12 PM:   production
+2:06:12 PM: ​
+2:06:12 PM: ❯ Installing extensions
+2:06:12 PM:    - neon
+2:06:38 PM: ​
+2:06:38 PM: ❯ Loading extensions
+2:06:38 PM:    - neon
+2:06:38 PM: ​
+2:06:38 PM: build.command from netlify.toml                               
+2:06:38 PM: ────────────────────────────────────────────────────────────────
+2:06:38 PM: ​
+2:06:38 PM: $ npm ci && REPL_ID='' NODE_ENV=production npx vite build
+2:06:48 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+2:06:44 PM: added 536 packages, and audited 537 packages in 5s
+2:06:44 PM: 67 packages are looking for funding
+2:06:44 PM:   run `npm fund` for details
+2:06:44 PM: 3 low severity vulnerabilities
+2:06:44 PM: To address all issues, run:
+2:06:44 PM:   npm audit fix
+2:06:44 PM: Run `npm audit` for details.
+2:06:44 PM: npm warn exec The following package was not found and will be installed: vite@6.3.5
+2:06:47 PM: failed to load config from /opt/build/repo/vite.config.ts
+2:06:47 PM: error during build:
+2:06:47 PM: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.ts.timestamp-1756400807886-41332f9adae38.mjs
+2:06:47 PM:     at new NodeError (node:internal/errors:405:5)
+2:06:47 PM:     at packageResolve (node:internal/modules/esm/resolve:916:9)
+2:06:47 PM:     at moduleResolve (node:internal/modules/esm/resolve:973:20)
+2:06:47 PM:     at defaultResolve (node:internal/modules/esm/resolve:1206:11)
+2:06:47 PM:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:404:12)
+2:06:47 PM:     at ModuleLoader.resolve (node:internal/modules/esm/loader:373:25)
+2:06:47 PM:     at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:250:38)
+2:06:47 PM:     at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:76:39)
+2:06:47 PM:     at link (node:internal/modules/esm/module_job:75:36)
+2:06:48 PM: ​
+2:06:48 PM: "build.command" failed                                        
+2:06:48 PM: ────────────────────────────────────────────────────────────────
+2:06:48 PM: ​
+2:06:48 PM:   Error message
+2:06:48 PM:   Command failed with exit code 1: npm ci && REPL_ID='' NODE_ENV=production npx vite build (https://ntl.fyi/exit-code-1)
+2:06:48 PM: ​
+2:06:48 PM:   Error location
+2:06:48 PM:   In build.command from netlify.toml:
+2:06:48 PM:   npm ci && REPL_ID='' NODE_ENV=production npx vite build
+2:06:48 PM: ​
+2:06:48 PM:   Resolved config
+2:06:48 PM:   build:
+2:06:48 PM:     command: npm ci && REPL_ID='' NODE_ENV=production npx vite build
+2:06:48 PM:     commandOrigin: config
+2:06:48 PM:     environment:
+2:06:48 PM:       - NODE_VERSION
+2:06:48 PM:       - NODE_ENV
+2:06:48 PM:     publish: /opt/build/repo/dist/public
+2:06:48 PM:     publishOrigin: config
+2:06:48 PM:   redirects:
+2:06:48 PM:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+2:06:48 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+2:06:48 PM: Failing build: Failed to build site
+2:06:49 PM: Finished processing build request in 52.898s

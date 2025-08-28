@@ -1,0 +1,77 @@
+The Netlify deploy errored, with the following guidance provided:
+
+**Diagnosis:**
+- The build failed with the error message `Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from vite.config.prod.js` at [line 76](#L76).
+
+**Solution:**
+- The error occurs because the build cannot find the 'vite' package specified in the 'vite.config.prod.js' configuration file.
+- To resolve this issue, ensure that the 'vite' package is added as a dependency in the 'package.json' file or commit the 'vite' package to the repository.
+- Verify that the 'vite' package is included in the 'package.json' file, and if not, add it as a dependency by running `npm install vite` locally and committing the changes to the repository.
+
+The relevant error logs are:
+
+Line 0: build-image version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a (noble)
+Line 1: buildbot version: 24a1153d2167e2fd2b97bf41bcef5782eb23901a
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/thomasguilherme099-hash/ComparativoFornecedor
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+Line 9: Custom build command detected. Proceeding with the specified command: 'npm ci && npx vite build --config vite.config.prod.js'
+Line 10: Starting to install dependencies
+Line 11: Attempting Node.js version '18' from .node-version
+Line 12: Downloading and installing node v18.20.8...
+Line 13: Downloading https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.xz...
+Line 64: ​
+Line 65: [36m$ npm ci && npx vite build --config vite.config.prod.js[39m
+Line 66: added 536 packages, and audited 537 packages in 5s
+Line 67: 67 packages are looking for funding
+Line 68:   run `npm fund` for details
+Line 69: 3 low severity vulnerabilities
+Line 70: To address all issues, run:
+Line 71:   npm audit fix
+Line 72: Run `npm audit` for details.
+Line 73: npm warn exec The following package was not found and will be installed: vite@6.3.5
+Line 74: [31mfailed to load config from /opt/build/repo/vite.config.prod.js[39m
+Line 75: [31merror during build:
+Line 76: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /opt/build/repo/node_modules/.vite-temp/vite.config.prod.
+Line 77:     at new NodeError (node:internal/errors:405:5)
+Line 78:     at packageResolve (node:internal/modules/esm/resolve:916:9)
+Line 79:     at moduleResolve (node:internal/modules/esm/resolve:973:20)
+Line 80:     at defaultResolve (node:internal/modules/esm/resolve:1206:11)
+Line 81:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:404:12)
+Line 82:     at ModuleLoader.resolve (node:internal/modules/esm/loader:373:25)
+Line 83:     at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:250:38)
+Line 84:     at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:76:39)
+Line 85:     at link (node:internal/modules/esm/module_job:75:36)[39m
+Line 86: [91m[1m​[22m[39m
+Line 87: [91m[1m"build.command" failed                                        [22m[39m
+Line 88: [91m[1m────────────────────────────────────────────────────────────────[22m[39m
+Line 89: ​
+Line 90:   [31m[1mError message[22m[39m
+Line 91:   Command failed with exit code 1: npm ci && npx vite build --config vite.config.prod.js
+Line 92: ​
+Line 93:   [31m[1mError location[22m[39m
+Line 94:   In build.command from netlify.toml:
+Line 95:   npm ci && npx vite build --config vite.config.prod.js
+Line 96: ​
+Line 97:   [31m[1mResolved config[22m[39m
+Line 98:   build:
+Line 99:     command: npm ci && npx vite build --config vite.config.prod.js
+Line 100:     commandOrigin: config
+Line 101:     environment:
+Line 102:       - NODE_VERSION
+Line 103:       - NODE_ENV
+Line 104:     publish: /opt/build/repo/dist/public
+Line 105:     publishOrigin: config
+Line 106:   redirects:
+Line 107:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+Line 108: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 109: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 110: Failing build: Failed to build site
+Line 111: Finished processing build request in 48.125s
