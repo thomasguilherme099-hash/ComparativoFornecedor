@@ -1,11 +1,10 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && npx vite build --config vite.config.netlify.ts"
+  command = "npm ci && NODE_ENV=production npx vite build"
 
 [build.environment]
   NODE_VERSION = "18"
   NODE_ENV = "production"
-  REPL_ID = ""
 
 [[redirects]]
   from = "/*"
