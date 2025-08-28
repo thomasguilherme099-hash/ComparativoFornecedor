@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "npm install && mkdir -p dist/public && npx tailwindcss -i client/src/index.css -o dist/public/main.css --minify && npx esbuild client/src/main.tsx --bundle --outfile=dist/public/main.js --format=iife --target=es2020 --jsx=automatic --define:process.env.NODE_ENV='\"production\"' && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node fix-html.js"
+  command = "node build-netlify.js"
 
 [build.environment]
   NODE_VERSION = "20.17.0"
