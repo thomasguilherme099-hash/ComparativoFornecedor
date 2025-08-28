@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && node build-netlify.js"
+  command = "node build-netlify.js"
 
 [build.environment]
   NODE_VERSION = "20.17.0"
