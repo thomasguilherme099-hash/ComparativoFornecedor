@@ -16,7 +16,7 @@ try {
   
   // Build frontend
   console.log('Building frontend...');
-  execSync('npx vite build --outDir dist/public --emptyOutDir', {
+  execSync('npx vite build client --outDir ../dist/public --emptyOutDir --config ../vite.config.netlify.simple.js', {
     stdio: 'inherit',
     env: {
       ...process.env,
