@@ -18,7 +18,6 @@ try {
   console.log('Building frontend...');
   execSync('npx vite build --outDir dist/public --emptyOutDir', {
     stdio: 'inherit',
-    cwd: resolve(__dirname, 'client'),
     env: {
       ...process.env,
       NODE_ENV: 'production',
