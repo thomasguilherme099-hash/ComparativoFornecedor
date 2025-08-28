@@ -10,9 +10,9 @@ const __dirname = dirname(__filename);
 console.log('Starting Netlify build...');
 
 try {
-  // Ensure all build dependencies are available
-  console.log('Installing build dependencies...');
-  execSync('npm install vite autoprefixer postcss tailwindcss', { stdio: 'inherit' });
+  // Install all dependencies including devDependencies
+  console.log('Installing all dependencies...');
+  execSync('npm install', { stdio: 'inherit' });
   
   // Build frontend
   console.log('Building frontend...');
