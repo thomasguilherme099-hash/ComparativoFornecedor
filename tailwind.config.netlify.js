@@ -1,67 +1,93 @@
-#!/usr/bin/env node
-
-import { execSync } from 'child_process';
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
-
-console.log('🚀 Starting Netlify build...');
-
-function runCommand(command, description) {
-  try {
-    console.log(`📦 ${description}...`);
-    execSync(command, { stdio: 'inherit' });
-    console.log(`✅ ${description} completed!`);
-  } catch (error) {
-    console.error(`❌ ${description} failed:`, error.message);
-    process.exit(1);
-  }
-}
-
-try {
-  // Install dependencies
-  runCommand('npm install', 'Installing dependencies');
-  
-  // Create dist directory
-  console.log('📁 Creating build directories...');
-  if (!existsSync('dist')) {
-    mkdirSync('dist', { recursive: true });
-  }
-  if (!existsSync('dist/public')) {
-    mkdirSync('dist/public', { recursive: true });
-  }
-  
-  // Build CSS with Tailwind (without minify to preserve variables)
-  runCommand('npx tailwindcss -i client/src/index.css -o dist/public/main.css --config tailwind.config.netlify.js', 'Building CSS with Tailwind');
-  
-  // Build frontend with esbuild
-  runCommand('npx esbuild client/src/main.tsx --bundle --outfile=dist/public/main.js --format=iife --target=es2020 --jsx=automatic --define:process.env.NODE_ENV=\\"production\\"', 'Building frontend JavaScript');
-  
-  // Create HTML file
-  console.log('📄 Creating HTML file...');
-  const html = `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PaintCompare - Comparador de Preços de Tintas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/main.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script src="/main.js"></script>
-  </body>
-</html>`;
-
-  writeFileSync('dist/public/index.html', html);
-  console.log('✅ HTML file created!');
-  
-  // Build backend
-  runCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist', 'Building backend');
-  
-  console.log('🎉 Build completed successfully!');
-} catch (error) {
-  console.error('💥 Build failed:', error.message);
-  process.exit(1);
-}
+module.exports = {
+  darkMode: ["class"],
+  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
+        },
+        primary: {
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
+        },
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
+        },
+        destructive: {
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
+        },
+        border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
+        chart: {
+          "1": "var(--chart-1)",
+          "2": "var(--chart-2)",
+          "3": "var(--chart-3)",
+          "4": "var(--chart-4)",
+          "5": "var(--chart-5)",
+        },
+        sidebar: {
+          DEFAULT: "var(--sidebar)",
+          foreground: "var(--sidebar-foreground)",
+          primary: "var(--sidebar-primary)",
+          "primary-foreground": "var(--sidebar-primary-foreground)",
+          accent: "var(--sidebar-accent)",
+          "accent-foreground": "var(--sidebar-accent-foreground)",
+          border: "var(--sidebar-border)",
+          ring: "var(--sidebar-ring)",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)"],
+        serif: ["var(--font-serif)"],
+        mono: ["var(--font-mono)"],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+};
