@@ -29,8 +29,8 @@ try {
     mkdirSync('dist/public', { recursive: true });
   }
   
-  // Build CSS with Tailwind
-  runCommand('npx tailwindcss -i client/src/index.css -o dist/public/main.css --config tailwind.config.netlify.js --minify', 'Building CSS with Tailwind');
+  // Build CSS with Tailwind (without minify to preserve variables)
+  runCommand('npx tailwindcss -i client/src/index.css -o dist/public/main.css --config tailwind.config.netlify.js', 'Building CSS with Tailwind');
   
   // Build frontend with esbuild
   runCommand('npx esbuild client/src/main.tsx --bundle --outfile=dist/public/main.js --format=iife --target=es2020 --jsx=automatic --define:process.env.NODE_ENV=\\"production\\"', 'Building frontend JavaScript');
