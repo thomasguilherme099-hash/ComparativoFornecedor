@@ -1,11 +1,10 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && DISABLE_REPLIT_PLUGINS=true NODE_ENV=production REPL_ID='' npx vite build --mode production && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
+  command = "npm ci && NODE_ENV=production npx vite build --config vite.config.mjs && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
 
 [build.environment]
   NODE_VERSION = "18"
   NODE_ENV = "production"
-  DISABLE_REPLIT_PLUGINS = "true"
 
 [[redirects]]
   from = "/*"
