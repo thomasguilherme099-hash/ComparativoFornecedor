@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "npm install vite && npm ci && NODE_ENV=production npx vite build --config vite.config.netlify.js && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
+  command = "npm ci && NODE_ENV=production npx vite build --config vite.config.netlify.js && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
 
 [build.environment]
   NODE_VERSION = "20.17.0"
