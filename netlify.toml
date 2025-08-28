@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && npx vite build --config vite.netlify.config.js"
+  command = "npm ci && npx vite build --config vite.netlify.config.mjs"
 
 [build.environment]
   NODE_VERSION = "18"
