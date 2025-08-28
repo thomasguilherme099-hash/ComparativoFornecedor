@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && REPL_ID= NODE_ENV=production npx vite build"
+  command = "npm ci && npx vite build --config vite.config.netlify.ts"
 
 [build.environment]
   NODE_VERSION = "18"
