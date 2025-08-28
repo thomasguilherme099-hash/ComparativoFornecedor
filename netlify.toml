@@ -3,7 +3,7 @@
   command = "npm ci && DISABLE_REPLIT_PLUGINS=true NODE_ENV=production REPL_ID='' npx vite build --mode production && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
 
 [build.environment]
-  NODE_VERSION = "18.20.8"
+  NODE_VERSION = "20"
   NODE_ENV = "production"
   DISABLE_REPLIT_PLUGINS = "true"
 
