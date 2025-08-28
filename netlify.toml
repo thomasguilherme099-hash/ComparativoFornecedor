@@ -3,7 +3,7 @@
   command = "npm ci && npx vite build --config vite.config.prod.js"
 
 [build.environment]
-  NODE_VERSION = "18.20.4"
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
