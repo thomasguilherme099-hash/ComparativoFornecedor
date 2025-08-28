@@ -1,9 +1,10 @@
 [build]
   publish = "dist/public"
-  command = "npm ci && REPL_ID='' NODE_ENV=production npm run build"
+  command = "npm ci && REPL_ID='' NODE_ENV=production npx vite build --mode production && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
 
 [build.environment]
   NODE_VERSION = "18"
+  NODE_ENV = "production"
 
 [[redirects]]
   from = "/*"
@@ -12,9 +13,12 @@
 
 [context.production.environment]
   NODE_ENV = "production"
+  REPL_ID = ""
 
 [context.deploy-preview.environment]
   NODE_ENV = "production"
+  REPL_ID = ""
 
 [context.branch-deploy.environment]
   NODE_ENV = "production"
+  REPL_ID = ""
