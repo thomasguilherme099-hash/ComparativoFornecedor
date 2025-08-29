@@ -65,9 +65,12 @@ export class JSONBinClient {
   // Testa a conexão
   async testConnection(): Promise<boolean> {
     try {
-      await this.makeRequest(`/b/${this.binId}/latest`);
+      console.log('JSONBin: Fazendo requisição de teste para:', `/b/${this.binId}/latest`);
+      const result = await this.makeRequest(`/b/${this.binId}/latest`);
+      console.log('JSONBin: Conexão bem-sucedida, resultado:', result);
       return true;
-    } catch {
+    } catch (error: any) {
+      console.error('JSONBin: Erro na conexão:', error.message);
       return false;
     }
   }

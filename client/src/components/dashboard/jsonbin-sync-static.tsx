@@ -41,15 +41,39 @@ export function JSONBinSync() {
   }, []);
 
   const testConnection = async (key: string = apiKey, id: string = binId) => {
-    if (!key || !id) return;
+    if (!key || !id) {
+      console.log('JSONBin: Chave ou ID não fornecidos');
+      return;
+    }
     
+    console.log('JSONBin: Testando conexão...', { keyLength: key.length, binId: id });
     setIsLoading(true);
     try {
       staticStorage.setJSONBinConfig(key, id);
       const connected = await staticStorage.testJSONBinConnection();
+      console.log('JSONBin: Resultado do teste:', connected);
       setConnectionStatus(connected);
-    } catch (error) {
+      
+      if (connected) {
+        toast({
+          title: "Conexão bem-sucedida",
+          description: "JSONBin conectado com sucesso!",
+        });
+      } else {
+        toast({
+          title: "Falha na conexão",
+          description: "Verifique suas credenciais JSONBin.",
+          variant: "destructive"
+        });
+      }
+    } catch (error: any) {
+      console.error('JSONBin: Erro na conexão:', error);
       setConnectionStatus(false);
+      toast({
+        title: "Erro na conexão",
+        description: error.message || "Erro ao conectar com JSONBin",
+        variant: "destructive"
+      });
     } finally {
       setIsLoading(false);
     }

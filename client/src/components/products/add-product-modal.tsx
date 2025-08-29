@@ -20,6 +20,8 @@ interface AddProductModalProps {
 export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [isCreatingCustomBrand, setIsCreatingCustomBrand] = useState(false);
+  const [customBrand, setCustomBrand] = useState("");
   
   const form = useForm<InsertProduct>({
     resolver: zodResolver(insertProductSchema),
@@ -36,7 +38,9 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
 
   const createProductMutation = useMutation({
     mutationFn: async (data: InsertProduct) => {
+      console.log("Enviando dados:", data);
       const response = await apiRequest("POST", "/api/products", data);
+      console.log("Resposta da API:", response);
       return response.json();
     },
     onSuccess: () => {
@@ -50,16 +54,61 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
       form.reset();
       onOpenChange(false);
     },
-    onError: (error) => {
+    onError: (error: any) => {
+      console.error("Erro ao criar produto:", error);
+      let errorMessage = "Falha ao criar produto. Tente novamente.";
+      
+      if (error?.message?.includes("brand")) {
+        errorMessage = "Por favor, selecione uma marca para o produto.";
+      } else if (error?.message?.includes("validation")) {
+        errorMessage = "Verifique se todos os campos obrigatórios foram preenchidos.";
+      }
+      
       toast({
-        title: "Erro",
-        description: "Falha ao criar produto. Tente novamente.",
+        title: "Erro no cadastro",
+        description: errorMessage,
         variant: "destructive",
       });
     },
   });
 
   const onSubmit = (data: InsertProduct) => {
+    console.log("Dados do produto para salvar:", data);
+    
+    // Validação adicional no frontend
+    let finalBrand = data.brand;
+    if (isCreatingCustomBrand && customBrand.trim()) {
+      finalBrand = customBrand.trim();
+    }
+    
+    if (!finalBrand || finalBrand.trim() === "") {
+      toast({
+        title: "Campo obrigatório",
+        description: "Por favor, selecione ou digite uma marca para o produto.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Atualiza os dados com a marca final
+    data.brand = finalBrand;
+    
+    // Converte o preço do formato brasileiro para o formato americano
+    if (data.price && typeof data.price === 'string') {
+      // Remove pontos e troca vírgula por ponto
+      data.price = data.price.replace(/\./g, '').replace(',', '.');
+      console.log("💰 Preço convertido:", data.price);
+    }
+    
+    if (!data.type || data.type.trim() === "") {
+      toast({
+        title: "Campo obrigatório", 
+        description: "Por favor, selecione o tipo do produto.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     createProductMutation.mutate(data);
   };
 
@@ -76,7 +125,7 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome do Produto</FormLabel>
+                  <FormLabel>Nome do Produto *</FormLabel>
                   <FormControl>
                     <Input placeholder="Ex: Látex Premium 18L" {...field} data-testid="input-product-name" />
                   </FormControl>
@@ -90,21 +139,48 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
               name="brand"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Marca</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Marca *</FormLabel>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        setIsCreatingCustomBrand(!isCreatingCustomBrand);
+                        setCustomBrand("");
+                        field.onChange("");
+                      }}
+                      data-testid="toggle-custom-brand"
+                    >
+                      {isCreatingCustomBrand ? "Selecionar existente" : "Nova marca"}
+                    </Button>
+                  </div>
+                  
+                  {isCreatingCustomBrand ? (
                     <FormControl>
-                      <SelectTrigger data-testid="select-brand">
-                        <SelectValue placeholder="Selecione a marca" />
-                      </SelectTrigger>
+                      <Input
+                        placeholder="Digite o nome da nova marca"
+                        value={customBrand}
+                        onChange={(e) => setCustomBrand(e.target.value)}
+                        data-testid="input-custom-brand"
+                      />
                     </FormControl>
-                    <SelectContent>
-                      {PAINT_BRANDS.map((brand) => (
-                        <SelectItem key={brand.id} value={brand.name}>
-                          {brand.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  ) : (
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger data-testid="select-brand">
+                          <SelectValue placeholder="Selecione a marca" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {PAINT_BRANDS.map((brand) => (
+                          <SelectItem key={brand.id} value={brand.name}>
+                            {brand.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
                   <FormMessage />
                 </FormItem>
               )}
@@ -116,7 +192,7 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tipo</FormLabel>
+                    <FormLabel>Tipo *</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger data-testid="select-type">
@@ -141,7 +217,7 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
                 name="size"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tamanho</FormLabel>
+                    <FormLabel>Tamanho *</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger data-testid="select-size">
@@ -167,7 +243,7 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Cor</FormLabel>
+                  <FormLabel>Cor *</FormLabel>
                   <FormControl>
                     <Input placeholder="Ex: Branco Neve" {...field} data-testid="input-color" />
                   </FormControl>
@@ -181,7 +257,7 @@ export function AddProductModal({ open, onOpenChange }: AddProductModalProps) {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Preço (R$)</FormLabel>
+                  <FormLabel>Preço (R$) *</FormLabel>
                   <FormControl>
                     <Input 
                       type="number" 
